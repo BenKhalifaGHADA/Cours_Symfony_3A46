@@ -1,0 +1,33 @@
+{#  Bonjour {{ n }}#}
+{% set a=5 %} {# déclaration d'une variable #}
+{{ a }}
+<br>
+
+{% set ch1="Hello" %}
+La chaîne est: {{ ch1 }}
+<br>
+{#tableau indexée #}
+{% set tab=[1,2,3] %}
+{% for i in tab %}
+    {{ i }}
+{% endfor %}
+{# tableau associatif #}
+{% set tab2={'nom':'foulen','prenom':'ben foulen'} %}
+{% for key,value in tab2 %}
+    {{ key }} : {{ value }}
+{% endfor %}
+{% set b=3 %}
+{% if b==1 %}
+C'est correct
+    {% else %}
+    c'est faux
+{% endif %}
+{# 2ème méthode #}
+{{ b==1 ? 'Cest correct' :'cest faux' }} {# syntaxe tertiaire #}
+{% set ch4="hello" %}
+{{ ch4|upper }}
+<a href="{{ url('app_author') }}">Home URL</a>
+<br>
+<a href="{{ path('app_author') }}">Home PATH</a>
+<img src="{{ asset('images/Taha_Hussein.jpg') }}">
+

@@ -1,0 +1,31 @@
+<html>
+<head>
+
+</head>
+<body>
+<table>
+    <tr>
+        <td>ID</td>
+        <td>Username</td>
+        <td>Email</td>
+        <td>Actions</td>
+    </tr>
+    {% for Author in Authors %}
+    <tr>
+        <td>{{ Author.id }}</td>
+        <td>{{ Author.username }}</td>
+        <td>{{ Author.email }}</td>
+        <td>
+            <a href="">Show</a>
+            <a href="">Delete</a>
+            <a href="">Update</a>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+
+
+</body>
+</html>
