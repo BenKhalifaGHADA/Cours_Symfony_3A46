@@ -20,6 +20,63 @@ class AuthorRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Author::class);
     }
+    //QueryBuilder -Question1
+    public function listAuthorByEmail()
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.email', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    //Query Builder: Question 1
+    public function showAllAuthorsOrderByEmail()
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.email','DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function showAllBooksByRef($ref)
+    {
+        return $this->createQueryBuilder('b')
+            ->join('b.author', 'a')
+            ->addSelect('a')
+            ->where('b.ref = :ref')
+            ->setParameter('ref', $ref)
+            ->getQuery()
+            ->getResult();
+    }
+    //Query Builder: Question 4
+    public function showBooksByDateAndNbBooks($nbooks, $year)
+    {
+        return $this->createQueryBuilder('b')
+            ->join('b.author', 'a')
+            ->addSelect('a')
+            ->where('a.nb_books > :nbooks')
+            ->andWhere("b.publicationDate < :year")
+            ->setParameter('nbooks', $nbooks)
+            ->setParameter('year', $year)
+            ->getQuery()
+            ->getResult();
+    }
+
+    //Query Builder: Question 5
+    public function updateBooksCategoryByAuthor($c)
+    {
+        return $this->getEntityManager()->createQueryBuilder()
+            ->update('App\Entity\Book', 'b')
+
+            ->set('b.category', '?1')
+            ->setParameter(1, 'Romance')
+            ->where('b.category LIKE ?2')
+            ->setParameter(2, $c)
+            ->getQuery()
+            ->getResult();
+    }
+
 
 //    /**
 //     * @return Author[] Returns an array of Author objects

@@ -1,0 +1,18 @@
+<h1>Recherche de livres par référence</h1>
+
+{{ form_start(form) }}
+    {{ form_row(form.ref) }}
+    {{ form_row(form.search) }}
+{{ form_end(form) }}
+
+<table>
+    <tr>
+        <td>title</td>
+    </tr>
+    {% for book  in books%}
+    <tr>
+        <td>{{ book.title }}</td>
+        <td>{{ book.ref }}</td>
+    </tr>
+    {% endfor %}
+</table>
